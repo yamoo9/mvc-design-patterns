@@ -99,9 +99,4 @@ const note = { name: '노트' };
 
 
 // Object.create()
-const deatchNote = Object.create(note, {
-  name: { value: '데스노트', writable: false, enumerable: false, configurable: false },
-  write: { value(action) { return `노트에 적은 내용은 "${action}". 노트에 적은 것은 정확히 실현될 것이다.` } },
-  owner: { value: '야가미 라이토' },
-  pages: { value: 444 },
-});
+const otherNote = Object.create(note);

@@ -9,7 +9,7 @@ JavaScript 디자인 패턴 학습 저장소
 - [x] Constructor
 - [x] Prototype
 - [x] Singleton
-- [ ] Factory
+- [x] Factory
 
 ## 구조(Structual)
 

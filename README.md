@@ -6,9 +6,9 @@ JavaScript 디자인 패턴 학습 저장소
 
 기존 코드를 쉽게 재사용하고 확장 가능한 유연한 코드 작성을 돕는 패턴들입니다.
 
-- [ ] Constructor
-- [ ] Prototype
-- [ ] Singleton
+- [x] Constructor
+- [x] Prototype
+- [x] Singleton
 - [ ] Factory
 
 ## 구조(Structual)

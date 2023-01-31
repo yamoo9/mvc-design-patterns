@@ -16,7 +16,7 @@ function createCommunityMember(type, ...args) {
     case PERMISSIONS.admin:
       return new Administrator(...args);
     default:
-      throw new TypeError('생성 가능한 클래스 타입은 "user", "videolecture", "comment" 입니다.');
+      throw new TypeError('생성 가능한 클래스 타입은 "guest", "member", "administrator" 입니다.');
   }
 }
 

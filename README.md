@@ -15,7 +15,7 @@ JavaScript 디자인 패턴 학습 저장소
 
 다양한 객체 사이 구조를 구성하고, 효율적 관계 구축을 돕는 패턴들입니다.
 
-- [ ] Adapter
+- [x] Adapter
 - [ ] Composite
 - [ ] Module
 - [ ] Decorator

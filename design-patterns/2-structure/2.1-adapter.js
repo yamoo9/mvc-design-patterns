@@ -4,6 +4,7 @@
 // 다른 포멧과 구조를 가진 객체 간 공통의 인터페이스를 사용해 작동할 수 있도록 합니다.
 // -----------------------------------------------------------------
 
+
 // 문제 상황
 // - XML만 제공하는 오래된 API
 // - JSON만 허용하는 Chart 라이브러리
@@ -57,7 +58,6 @@ function xml2json(xml) {
   return obj;
 }
 
-
 // -----------------------------------------------------------------
 // 차트 데이터 패치 함수
 function fetchChartData() {
@@ -102,35 +102,39 @@ const ENDPOINTS = {
 // Chart 렌더링
 let chart = null;
 
-async function renderChart() {
-  
-  let ctx = document.querySelector('[data-chart-id="myChart"]').getContext('2d');
-  const { data: { point } } = await fetchChartData();
-  const dataList = point.map(({ x, y }) => Number(x['#text']) + Number(y['#text']));
-
-  const chartOptions = {
-    type: 'bar',
-    data: {
-      labels: '서울 수원 원주 용인 여주 청주 대전 곡성 부산 광주'.split(' '),
-      datasets: [{
+const chartOptions = {
+  type: 'bar',
+  data: {
+    labels: '서울 수원 원주 용인 여주 청주 대전 곡성 부산 광주'.split(' '),
+    datasets: [
+      {
         label: '🗳️ 투표',
-        data: dataList,
+        data: [],
         fill: false,
         backgroundColor: '#ff777b',
         borderColor: '#ece9e9',
         borderWidth: 1,
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
       },
     },
-  }
+  },
+};
 
-  if (!chart) { 
+async function renderChart() {
+  let ctx = document .querySelector('[data-chart-id="myChart"]') .getContext('2d');
+  
+  const { data: { point }, } = await fetchChartData();
+
+  const dataList = point.map(({ x, y }) => Number(x['#text']) + Number(y['#text']));
+
+  if (!chart) {
+    chartOptions.data.datasets.data = dataList;
     chart = new Chart(ctx, chartOptions);
   } else {
     chart.data.datasets.map((dataset) => {
@@ -139,7 +143,74 @@ async function renderChart() {
     });
     chart.update('active');
   }
-
 }
 
-renderChart();
+// renderChart();
+
+
+// -----------------------------------------------------------------
+// 어댑터 패턴
+class ChartAdapter {
+  static xml2json = xml2json;
+
+  static fetchData(endpoint, params = {}) {
+    const url = new URL(endpoint);
+    url.search = new URLSearchParams(params).toString();
+    return fetch(url)
+      .then((response) => response.text())
+      .then((data) => {
+        const xml = new DOMParser().parseFromString(data, 'application/xml');
+        const json = ChartAdapter.xml2json(xml);
+        return json;
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  }
+
+  constructor(options) {
+    if (options) { this.init(options); }
+  }
+
+  #chart = null;
+
+  init({ targetSelector, endpoint, params = {}, chartOptions = {} } = {}) {
+    this.canvas = document.querySelector(targetSelector).getContext('2d');
+    this.endpoint = endpoint;
+    this.params = params;
+    this.chartOptions = chartOptions;
+
+    return this;
+  }
+
+  async render() {
+    const { data: { point } } = await ChartAdapter.fetchData(this.endpoint, this.params);
+    const dataList = point.map(({ x, y }) => Number(x['#text']) + Number(y['#text']));
+
+    if (!this.#chart) {
+      this.chartOptions.data.datasets.data = dataList;
+      this.#chart = new Chart(this.canvas, this.chartOptions);
+    } else {
+      this.#chart.data.datasets.map((dataset) => {
+        dataset.data = dataList;
+        return dataset;
+      });
+      this.#chart.update('active');
+    }
+
+    return this;
+  }
+}
+
+const chartAdapter = new ChartAdapter({
+  targetSelector: '[data-chart-id="myChart"]',
+  endpoint: ENDPOINTS.chart.api,
+  params: ENDPOINTS.chart.params,
+  chartOptions
+});
+
+function renderChartAdapter() {
+  chartAdapter.render();
+}
+
+renderChartAdapter();

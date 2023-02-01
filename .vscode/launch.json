@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "패턴 테스트",
+      "cwd": "${workspaceFolder}",
+      "program": "${file}",
+      "skipFiles": ["<node_internals>/**"],
+    }
+  ]
+}

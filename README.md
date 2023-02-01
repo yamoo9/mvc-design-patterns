@@ -19,7 +19,7 @@ JavaScript 디자인 패턴 학습 저장소
 - [x] Composite
 - [x] Module
 - [x] Decorator
-- [ ] Facade
+- [x] Facade
 - [ ] Proxy
 
 ## 행동(Behavioral)

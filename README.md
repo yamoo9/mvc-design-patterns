@@ -29,7 +29,7 @@ JavaScript 디자인 패턴 학습 저장소
 - [x] Chain of Responsibility
 - [x] Command
 - [x] Observer
-- [ ] Template Method
+- [x] Template Method
 - [ ] Strategy
 
 # MVC Architecture

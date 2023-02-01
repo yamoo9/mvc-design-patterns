@@ -30,7 +30,7 @@ JavaScript 디자인 패턴 학습 저장소
 - [x] Command
 - [x] Observer
 - [x] Template Method
-- [ ] Strategy
+- [x] Strategy
 
 # MVC Architecture
 

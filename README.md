@@ -17,7 +17,7 @@ JavaScript 디자인 패턴 학습 저장소
 
 - [x] Adapter
 - [x] Composite
-- [ ] Module
+- [x] Module
 - [ ] Decorator
 - [ ] Facade
 - [ ] Proxy

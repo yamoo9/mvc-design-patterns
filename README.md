@@ -28,7 +28,7 @@ JavaScript 디자인 패턴 학습 저장소
 
 - [x] Chain of Responsibility
 - [x] Command
-- [ ] Observer
+- [x] Observer
 - [ ] Template Method
 - [ ] Strategy
 

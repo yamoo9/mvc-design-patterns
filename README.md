@@ -26,7 +26,7 @@ JavaScript 디자인 패턴 학습 저장소
 
 시스템의 서로 다른 객체 간 통신 및 책임 할당을 개선하는데 중점을 두는 디자인 패턴을 말합니다.
 
-- [ ] Chain of Responsibility
+- [x] Chain of Responsibility
 - [ ] Command
 - [ ] Observer
 - [ ] Template Method

@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  font: 1rem/1.5 Pretendard, sans-serif;
+}
+
+h1, h2, h3 {
+  color: var(--primary-500);
+}
+
+nav ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+nav a[href] {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav h2,
+nav h3 {
+  margin-top: 0;
+  margin-bottom: calc(var(--gap));
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: 0;
+}
+
+input, button {
+  font-family: inherit;
+}

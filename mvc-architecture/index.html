@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html lang="ko-KR" class="no-js">
-<head>
-  <meta charset="UTF-8" />
-  <title>MVC 아키텍처</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="MVC 아키텍처 패턴을 사용해 애플리케이션을 개발하는 방법을 학습합니다." />
-  <meta name="theme-color" content="#006eb4" />
-  <link rel="icon" href="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" />
-</head>
-<body>
-  
-</body>
+<html lang="ko-KR">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript MVC 애플리케이션</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/pretendard/dist/web/static/pretendard.css" as="style" crossorigin />
+    <link rel="stylesheet" href="styles/main.css" />
+    <script type="module" src="./src/main.js"></script>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h1 lang="en" class="text-center text-3xl font-thin">Car Clicker</h1>
+      
+      <div class="flex flex-col md:flex-row gap-6">
+        <nav class="navigation" style="flex: 0 0 200px">
+          <h2 class="font-bold">카 내비게이션</h2>
+          <ul id="carListView"></ul>
+        </nav>
+        <figure id="carView" class="flex flex-col"></figure>
+      </div>
+    </div>
+
+  </body>
+
 </html>

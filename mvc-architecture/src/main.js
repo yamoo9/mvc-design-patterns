@@ -1,0 +1,1 @@
+import './carClicker/index.js';

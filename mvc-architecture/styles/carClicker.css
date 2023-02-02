@@ -1,0 +1,84 @@
+#carListView {
+  border: 0.1px solid currentColor;
+  border-radius: var(--gap);
+  padding: calc(var(--gap) * 3);
+  color: var(--primary-300);
+}
+
+#carListView a {
+  display: block;
+  border-radius: var(--gap);
+  padding: 0.4em 0.6em;
+}
+
+#carListView a:hover,
+#carListView a:focus {
+  background: var(--primary-50);
+}
+
+#carListView a:focus {
+  color: var(--primary-500);
+  outline: none;
+}
+
+#carListView .active {
+  font-weight: 700;
+  color: var(--primary-500);
+}
+
+#carView {
+  gap: calc(var(--gap)*4);
+  padding-bottom: 20px;
+}
+
+#carView figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--primary-500);
+}
+
+#carView strong {
+  line-height: 1;
+  font-size: 8vw;
+  font-weight: 200;
+  color: inherit;
+}
+
+@media (min-width: 40em /* 640px */) {
+  #carView strong {
+    font-size: 3rem;
+  }
+}
+
+#carView button {
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  border-radius: var(--gap);
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+  line-height: 1;
+  font-size: 4rem;
+  font-weight: 200;
+  background: transparent;
+  color: inherit;
+}
+
+#carView button:focus-visible {
+  outline: none;
+  background: var(--primary-100);
+}
+
+#carView img {
+  order: 10;
+  filter: saturate(0);
+  transition: all 0.6s ease-out;
+}
+
+#carView img:hover {
+  cursor: pointer;
+  order: 10;
+  filter: saturate(1);
+}

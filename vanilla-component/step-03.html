@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko-KR" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <title>STEP 03. 이벤트 전파 및 추상화</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="STEP 02 코드에서 작성한 클래스에 이벤트 연결 기능을 추상화한 메서드를 추가합니다." />
+  <meta name="theme-color" content="#006eb4" />
+  <link rel="icon" href="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  
+  <div id="NoteApp"></div>
+
+  <script data-type="component-class">
+
+    class Component {
+      constructor(element) {
+        this.element = element;
+        this.state = {};
+        this.init();
+        this.bindEvents();
+        this.render();
+      }
+
+      init() {}
+      bindEvents() {}
+
+      template() {
+        return ``;
+      }
+
+      render() {
+        this.element.innerHTML = this.template();
+      }
+
+      setState(newState) {
+        this.state = { ...this.state, ...newState };
+        this.render();
+      }
+
+      on(type, selector, listener) {
+        this.element.addEventListener(type, (e) => {
+          if (e.target.matches(selector) || e.target.closest(selector)) {
+            listener(e);
+          }
+        });
+      }
+
+      static getRandomNumber(n) {
+        return Math.floor(Math.random() * n);
+      }
+
+      static generateId({ prefix = 'euid', digit = 10 } = {}) {
+        const { getRandomNumber } = Component;
+        const characters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+        let id = `${prefix}-`;
+        
+        while(digit-- > 0) {
+          let randomIndex = getRandomNumber(characters.length - 1);
+          let randomChar = characters[randomIndex];
+          if (getRandomNumber(2) > 0) { randomChar = randomChar.toUpperCase(); }
+          id += randomChar;
+          characters.splice(randomIndex, 1);
+        }
+
+        return id;
+      }
+    }
+
+  </script>
+
+  <script data-type="note-app-component">
+
+    class NoteApp extends Component {
+
+      init() {
+        this.setState({
+          notes: [
+            { id: 'note-jdiCk', content: '컴포넌트 작동 흐름' },
+            { id: 'note-dIwjc', content: '컴포넌트 구현' },
+          ],
+        });
+      }
+
+      bindEvents() {
+        this.on('click', '.addNote', (e) => {
+          this.setState({
+            notes: [
+              ...this.state.notes,
+              {
+                id: Component.generateId({ prefix: 'note', digit: 5 }),
+                content: `노트 ${this.state.notes.length + 1}`
+              }
+            ]
+          });
+        });
+
+        this.on('click', '.deleteNote', (e) => {
+          this.setState({
+            notes: this.state.notes.filter(note => note.id !== e.target.closest('[data-id]').dataset.id),
+          });
+        });
+      }
+
+      template() {
+        return /* html */`
+          <button type="button" class="addNote">노트 추가 작성</button>
+          <ul class="NoteList">
+            ${this.state.notes.map(note => {
+              return /* html */`
+                <li class="NoteItem" data-id=${note.id}>
+                  ${note.content}
+                  <button type="button" class="deleteNote">삭제</button>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        `;
+      }
+
+    }
+
+  </script>
+
+  <script data-type="main">
+
+    new NoteApp(document.getElementById('NoteApp'));
+
+  </script>
+
+</body>
+</html>

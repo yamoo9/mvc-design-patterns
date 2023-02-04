@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko-KR" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <title>STEP 01. 상태와 업데이트</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="노트 추가 작성 버튼을 사용자가 눌렀을 때 노트 리스트 상태를 변경한 후 사용자 화면을 업데이트합니다." />
+  <meta name="theme-color" content="#006eb4" />
+  <link rel="icon" href="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  
+  <div id="NoteApp"></div>
+
+  <script data-type="main">
+    
+    let state = {
+      notes: [
+        { id: 'note-jdiCk', content: '컴포넌트 작동 흐름' }, 
+        { id: 'note-dIwjc', content: '컴포넌트 구현' },
+      ],
+    };
+
+    let element;
+
+    function init() {
+      element = document.getElementById('NoteApp');
+      bindEvents();
+      render();
+    }
+
+    function template() {
+      return /* html */`
+        <button type="button" class="addNote">노트 추가</button>
+        <ul class="NoteList">
+          ${state.notes.map((note) => `<li class="NoteItem" data-id=${note.id}>${note.content}</li>`).join('')}
+        </ul>
+      `;
+    }
+
+    function render() {
+      element.innerHTML = template();
+    }
+
+    function bindEvents() {
+      element.addEventListener('click', (e) => {
+        if (e.target.matches('.addNote')) {
+          const { notes } = state;
+          setState({
+            notes: [...notes, { id: generateId({ prefix: 'note', digit: 5 }), content: `노트 ${notes.length + 1}` }]
+          });
+        }
+      });
+    }
+
+    function setState(newState) {
+      state = { ...state, ...newState };
+      render();
+    }
+
+    function getRandomNumber(n) {
+      return Math.floor(Math.random() * n);
+    }
+
+    function generateId({ prefix = 'euid', digit = 10 } = {}) {
+      const characters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+      let id = `${prefix}-`;
+      
+      while(digit-- > 0) {
+        let randomIndex = getRandomNumber(characters.length - 1);
+        let randomChar = characters[randomIndex];
+        if (getRandomNumber(2) > 0) { randomChar = randomChar.toUpperCase(); }
+        id += randomChar;
+        characters.splice(randomIndex, 1);
+      }
+
+      return id;
+    }
+
+    init();
+    
+  </script>
+
+</body>
+</html>

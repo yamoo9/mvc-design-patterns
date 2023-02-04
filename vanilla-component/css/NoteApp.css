@@ -1,0 +1,17 @@
+@import './NoteInput.css';
+@import './NoteFilters.css';
+@import './NoteList.css';
+@import './NoteItem.css';
+
+#NoteApp {
+  display: inline-flex;
+  min-width: 300px;
+  flex-flow: column;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 4px solid #dedede;
+  color: #424242;
+  outline: 1px solid #e8e8e8;
+  outline-offset: 4px;
+}

@@ -1,3 +1,3 @@
-import NoteApp from './NoteApp/index.js';
+import NoteApp from './NoteApp.js';
 
 new NoteApp(document.getElementById('NoteApp'));

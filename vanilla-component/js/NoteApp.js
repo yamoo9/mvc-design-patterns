@@ -1,5 +1,5 @@
-import Component from "../lib/Component.js";
-import { NoteInput, NoteFilters, NoteList } from "../components/index.js";
+import Component from "./lib/Component.js";
+import { NoteInput, NoteFilters, NoteList } from "./components/index.js";
 import { NOTE_FILTERS } from './constants.js';
 
 

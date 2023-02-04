@@ -1,5 +1,5 @@
 import Component from "../lib/Component.js";
-import { NOTE_FILTERS, ACTIVE_CLASSNAME } from "../NoteApp/constants.js";
+import { NOTE_FILTERS, ACTIVE_CLASSNAME } from "../constants.js";
 
 export default class NoteFilters extends Component {
 

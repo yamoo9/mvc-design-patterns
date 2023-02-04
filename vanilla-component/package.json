@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "start": "npx live-server --host=localhost --port=3000 --open=step-01.html"
+    "start": "npx live-server --host=localhost --port=3000 --open=step-05.html"
   }
 }

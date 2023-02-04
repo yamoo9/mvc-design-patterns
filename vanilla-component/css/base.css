@@ -1,0 +1,25 @@
+body {
+  margin: 40px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 4px 8px;
+  background: transparent;
+  border: 1px solid #ddd;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #878787;
+}
+
+button:hover {
+  background: #f7f7f7;
+}
+
+button:focus {
+  outline: none;
+  border-color: #434343;
+  color: #434343;
+}

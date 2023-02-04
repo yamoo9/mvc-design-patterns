@@ -1,0 +1,20 @@
+.NoteFilters {
+  display: flex;
+  gap: 12px;
+}
+
+.NoteFilters [data-filter] {
+  border: 0;
+  padding: 0;
+}
+
+.NoteFilters [data-filter]:hover:not(:focus) {
+  background: #f2f2f2;
+}
+
+.NoteFilters [data-filter].active:not(:focus) {
+  cursor: not-allowed;
+  color: #434343;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

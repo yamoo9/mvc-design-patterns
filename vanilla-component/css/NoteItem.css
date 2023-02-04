@@ -1,0 +1,20 @@
+.NoteItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.NoteItem label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.NoteItem input:focus {
+  outline-color: #434343;
+  outline-offset: 0;
+}
+
+.NoteItem span {
+  margin-top: 1px;
+}

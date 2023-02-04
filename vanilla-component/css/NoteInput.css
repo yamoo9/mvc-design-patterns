@@ -1,0 +1,19 @@
+.NoteInput {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.NoteInput input {
+  flex: 1;
+  padding: 0.2em 0;
+  border: 0;
+  border-bottom: 1px solid #d9d9d9;
+  font-size: 1rem;
+}
+
+.NoteInput input:focus {
+  outline: none;
+  border-bottom-color: #494949;
+}
